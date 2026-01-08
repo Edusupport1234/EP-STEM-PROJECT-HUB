@@ -6,9 +6,9 @@ import ProjectDetail from './components/ProjectDetail';
 import ProjectEditor from './components/ProjectEditor';
 import CommunityView from './components/CommunityView';
 import LiveSpaceBackground from './components/LiveSpaceBackground';
-import { MOCK_PROJECTS, CATEGORIES, AVATAR_BG } from './constants';
-import { AppState, Project, CommunityPost, User, InteractiveProject, Comment } from './types';
-import { Sparkles, Search, ChevronDown, Trophy, Shield, Key, ArrowRight, User as UserIcon, X, Check, Cpu } from 'lucide-react';
+import { MOCK_PROJECTS, AVATAR_BG } from './constants';
+import { AppState, CommunityPost, User, InteractiveProject } from './types';
+import { ArrowRight, X, Cpu, ChevronDown } from 'lucide-react';
 import { db } from './services/firebase';
 import { ref, onValue, set, push, update, remove } from "firebase/database";
 
@@ -184,7 +184,7 @@ const App: React.FC = () => {
         }));
         setProjects(projectList);
       } else {
-        setProjects(MOCK_PROJECTS);
+        setProjects(MOCK_PROJECTS as InteractiveProject[]);
       }
     });
     return () => unsubscribe();
@@ -217,7 +217,7 @@ const App: React.FC = () => {
 
     if (state.activeSort === 'Trending') result = [...result].sort((a, b) => (b.views || 0) - (a.views || 0));
     else if (state.activeSort === 'Most Liked') result = [...result].sort((a, b) => (b.likes || 0) - (a.likes || 0));
-    else if (state.activeSort === 'Newest') result = [...result].sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+    else if (state.activeSort === 'Newest') result = [...result].sort((a, b) => new Date(b.publishedAt || '').getTime() - new Date(a.publishedAt || '').getTime());
 
     return result;
   }, [state.searchQuery, state.activeCategory, state.activeDifficulty, state.activeSort, projects]);
