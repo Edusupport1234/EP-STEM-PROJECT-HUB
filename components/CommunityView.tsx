@@ -125,7 +125,7 @@ const CommunityView: React.FC<CommunityViewProps> = ({ posts, onAddPost, onDelet
                <h1 className="text-6xl md:text-8xl font-black text-white drop-shadow-2xl mb-6 tracking-tighter uppercase italic leading-none">
                  COMMUNITY BOARD
                </h1>
-               <p className="text-white text-xl font-bold leading-relaxed italic max-w-2xl border-l-4 border-yellow-400 pl-6">
+               <p className="text-white text-xl font-black leading-relaxed italic max-w-2xl border-l-4 border-yellow-400 pl-6">
                  "This is where the magic happens. Share your builds, uploaded objects, and project breakthroughs with the academy."
                </p>
              </div>
@@ -220,7 +220,7 @@ const CommunityView: React.FC<CommunityViewProps> = ({ posts, onAddPost, onDelet
                       </div>
                       <div>
                         <h4 className="font-black text-black text-xs uppercase leading-none tracking-wider">{post.author}</h4>
-                        <p className="text-[9px] text-slate-700 mt-1.5 font-black uppercase tracking-widest">{post.timestamp}</p>
+                        <p className="text-[9px] text-slate-800 mt-1.5 font-black uppercase tracking-widest opacity-80">{post.timestamp}</p>
                       </div>
                     </div>
                     
@@ -254,7 +254,7 @@ const CommunityView: React.FC<CommunityViewProps> = ({ posts, onAddPost, onDelet
                         <Package className="w-4 h-4 text-yellow-600" />
                         <span className="text-[9px] font-black text-slate-900 uppercase tracking-[0.2em]">Personal Build</span>
                        </div>
-                       <span className="px-3 py-1 bg-slate-100 text-[8px] font-black text-slate-600 rounded-lg uppercase tracking-widest">{post.category}</span>
+                       <span className="px-3 py-1 bg-slate-100 text-[8px] font-black text-slate-700 rounded-lg uppercase tracking-widest">{post.category}</span>
                     </div>
                     <h3 className="font-black text-black text-3xl mb-5 leading-none tracking-tighter uppercase italic decoration-yellow-400/30 group-hover:underline">
                       {post.title}
@@ -267,7 +267,7 @@ const CommunityView: React.FC<CommunityViewProps> = ({ posts, onAddPost, onDelet
                       </div>
                     )}
                     
-                    <p className="text-black text-lg leading-relaxed whitespace-pre-wrap font-bold italic border-l-4 border-slate-200 pl-6">
+                    <p className="text-black text-lg leading-relaxed whitespace-pre-wrap font-bold italic border-l-4 border-slate-300 pl-6 opacity-100">
                       "{post.description}"
                     </p>
                   </div>
@@ -303,7 +303,7 @@ const CommunityView: React.FC<CommunityViewProps> = ({ posts, onAddPost, onDelet
           </div>
         </div>
       </div>
-      {/* Rest of component stays the same */}
+
       <div className="fixed bottom-12 right-12 flex flex-col items-end space-y-4 z-50">
         <div className="bg-white/95 backdrop-blur-md px-6 py-3 rounded-2xl shadow-2xl border border-slate-100 animate-in slide-in-from-right-10">
            <p className="text-[11px] font-black text-black uppercase tracking-widest">Share your personal build</p>
