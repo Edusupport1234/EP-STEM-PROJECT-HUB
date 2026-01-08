@@ -126,8 +126,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onToggle
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-12 bg-white rounded-[4rem] text-black mt-8 shadow-2xl overflow-hidden relative">
-        <div className="grid grid-cols-12 gap-10 p-10">
+      <div className="container mx-auto px-6 py-12 bg-white rounded-[4rem] text-black mt-8 shadow-2xl overflow-hidden relative border-t-8 border-yellow-400">
+        <div className="grid grid-cols-12 gap-10 p-4 md:p-10">
           
           {/* LEFT COLUMN: Sticky Navigation & Interactions */}
           <aside className="col-span-12 lg:col-span-2">
@@ -137,10 +137,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onToggle
                   <div key={item.id}>
                     <button
                       onClick={() => scrollTo(item.id)}
-                      className={`block w-full text-left px-4 py-2 text-[13px] font-black transition-all border-l-4 ${
+                      className={`block w-full text-left px-4 py-3 text-[13px] font-black transition-all border-l-4 ${
                         activeSection === item.id 
                           ? 'border-blue-600 text-blue-600 bg-blue-50' 
-                          : 'border-transparent text-slate-500 hover:text-black'
+                          : 'border-transparent text-slate-500 hover:text-black hover:bg-slate-50'
                       }`}
                     >
                       {item.label}
@@ -156,13 +156,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onToggle
                   className={`flex flex-1 items-center justify-center py-4 rounded-lg border transition-all ${
                     project.isLikedByUser 
                       ? 'bg-blue-600/10 border-blue-500 text-blue-600' 
-                      : 'border-slate-200 text-slate-500 hover:border-black hover:text-black'
+                      : 'border-slate-200 text-slate-700 hover:border-black hover:text-black shadow-sm'
                   }`}
                 >
                   <ThumbsUp className={`w-5 h-5 mr-2 ${project.isLikedByUser ? 'fill-blue-600' : ''}`} />
                   <span className="text-xs font-black">{project.likes}</span>
                 </button>
-                <button className="flex-1 flex items-center justify-center py-4 rounded-lg border border-slate-200 text-slate-500 hover:border-black hover:text-black transition-all">
+                <button className="flex-1 flex items-center justify-center py-4 rounded-lg border border-slate-200 text-slate-700 hover:border-black hover:text-black transition-all shadow-sm">
                   <Bookmark className="w-5 h-5" />
                 </button>
               </div>
@@ -172,8 +172,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onToggle
           {/* CENTER COLUMN: Main Content Flow */}
           <main className="col-span-12 lg:col-span-7 space-y-12">
             <div id="overview" className="space-y-8 scroll-mt-40">
-              <div className="flex items-center space-x-3">
-                 <div className="w-10 h-10 rounded-xl bg-[#6b1e8e] overflow-hidden border border-slate-200">
+              <div className="flex items-center space-x-4">
+                 <div className="w-12 h-12 rounded-2xl bg-[#6b1e8e] overflow-hidden border-2 border-slate-100 shadow-md">
                     <img 
                       src={`https://api.dicebear.com/7.x/bottts/svg?seed=${project.author}&backgroundColor=${AVATAR_BG}`} 
                       alt={project.author} 
@@ -182,54 +182,55 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onToggle
                  </div>
                  <div className="flex flex-col">
                     <div className="flex items-center space-x-2">
-                      <span className="text-sm font-black text-black hover:text-blue-600 cursor-pointer transition-colors">{project.author}</span>
+                      <span className="text-base font-black text-black hover:text-blue-600 cursor-pointer transition-colors uppercase tracking-tight">{project.author}</span>
                     </div>
-                    <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Published {project.publishedAt}</span>
+                    <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Published {project.publishedAt} | EP STEM HUB</span>
                  </div>
               </div>
 
-              <h1 className="text-5xl font-black text-black leading-tight tracking-tight uppercase italic">
+              <h1 className="text-5xl md:text-6xl font-black text-black leading-tight tracking-tight uppercase italic drop-shadow-sm">
                 {project.title}
               </h1>
 
-              <p className="text-xl text-black leading-relaxed font-bold italic border-l-8 border-yellow-400 pl-8 bg-slate-50 py-6 rounded-r-3xl">
+              <p className="text-2xl text-black leading-relaxed font-bold italic border-l-[12px] border-yellow-400 pl-10 bg-slate-50 py-10 rounded-r-[3rem] shadow-inner">
                 "{project.description}"
               </p>
 
-              <div className="flex flex-wrap items-center gap-6 py-4 border-y border-slate-100">
-                 <div className="flex items-center space-x-2 text-[12px] font-black text-orange-600 uppercase tracking-widest">
-                    <Zap className="w-4 h-4 fill-orange-600" />
+              <div className="flex flex-wrap items-center gap-8 py-6 border-y border-slate-100">
+                 <div className="flex items-center space-x-2 text-[13px] font-black text-orange-600 uppercase tracking-[0.2em]">
+                    <Zap className="w-5 h-5 fill-orange-600" />
                     <span>{project.difficulty}</span>
                  </div>
-                 <div className="flex items-center space-x-2 text-[12px] font-black text-black uppercase tracking-widest">
-                    <Clock className="w-4 h-4" />
+                 <div className="flex items-center space-x-2 text-[13px] font-black text-black uppercase tracking-[0.2em]">
+                    <Clock className="w-5 h-5 text-slate-900" />
                     <span>{project.duration}</span>
                  </div>
-                 <div className="flex items-center space-x-2 text-[12px] font-black text-black uppercase tracking-widest">
-                    <Eye className="w-4 h-4" />
-                    <span>{project.views}</span>
+                 <div className="flex items-center space-x-2 text-[13px] font-black text-black uppercase tracking-[0.2em]">
+                    <Eye className="w-5 h-5 text-slate-900" />
+                    <span>{project.views} Views</span>
                  </div>
               </div>
 
-              <div className="rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl aspect-video bg-slate-100">
-                 <img src={project.thumbnail} className="w-full h-full object-cover" alt={project.title} />
+              <div className="rounded-[4rem] overflow-hidden border-[12px] border-white shadow-[0_40px_100px_rgba(0,0,0,0.2)] aspect-video bg-slate-100 relative group">
+                 <img src={project.thumbnail} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" alt={project.title} />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
               </div>
             </div>
 
-            <section id="hardware" className="space-y-8 pt-12 border-t border-slate-100 scroll-mt-40">
+            <section id="hardware" className="space-y-8 pt-16 border-t border-slate-100 scroll-mt-40">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-black text-black uppercase tracking-tight">Hardware used in this mission</h2>
+                <h2 className="text-3xl font-black text-black uppercase tracking-tight italic">Mission Inventory</h2>
               </div>
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-6">
                 {project.hardware.map((item, idx) => (
-                  <div key={idx} className="bg-slate-50 p-6 rounded-[2rem] flex items-center border border-slate-100 hover:border-black transition-all group shadow-sm">
-                    <div className="w-16 h-16 bg-white rounded-2xl flex-shrink-0 mr-6 overflow-hidden p-2 shadow-inner border border-slate-100">
+                  <div key={idx} className="bg-slate-50 p-8 rounded-[2.5rem] flex items-center border-2 border-slate-100 hover:border-black transition-all group shadow-sm">
+                    <div className="w-20 h-20 bg-white rounded-3xl flex-shrink-0 mr-8 overflow-hidden p-3 shadow-inner border-2 border-slate-100">
                        <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
                     </div>
                     <div className="flex-grow">
-                      <p className="text-lg font-black text-black group-hover:text-blue-600 transition-colors uppercase tracking-tight">{item.name}</p>
-                      <a href={item.link} target="_blank" className="text-[10px] font-black text-slate-700 uppercase tracking-widest mt-1 flex items-center hover:text-black">
-                        Procurement Link <ExternalLink className="w-3 h-3 ml-1" />
+                      <p className="text-xl font-black text-black group-hover:text-blue-600 transition-colors uppercase tracking-tight">{item.name}</p>
+                      <a href={item.link} target="_blank" className="text-[11px] font-black text-slate-800 uppercase tracking-widest mt-2 flex items-center hover:text-black">
+                        Hardware Specs <ExternalLink className="w-4 h-4 ml-2" />
                       </a>
                     </div>
                   </div>
@@ -237,21 +238,21 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onToggle
               </div>
             </section>
 
-            <section id="story" className="space-y-10 pt-12 border-t border-slate-100 scroll-mt-40">
-              <h2 className="text-2xl font-black text-black uppercase tracking-tight">Mission Log (Story)</h2>
-              <div className="space-y-24">
+            <section id="story" className="space-y-12 pt-16 border-t border-slate-100 scroll-mt-40">
+              <h2 className="text-3xl font-black text-black uppercase tracking-tight italic">Technical Briefing</h2>
+              <div className="space-y-32">
                 {project.steps.map((step, idx) => (
-                  <div key={idx} id={`step-${step.title.replace(/\s+/g, '-').toLowerCase()}`} className="space-y-8 scroll-mt-40">
-                    <div className="flex items-center space-x-6">
-                       <div className="w-12 h-12 bg-black text-white flex items-center justify-center rounded-2xl font-black text-xl italic">{idx + 1}</div>
-                       <h3 className="text-3xl font-black text-black tracking-tight uppercase italic">{step.title}</h3>
+                  <div key={idx} id={`step-${step.title.replace(/\s+/g, '-').toLowerCase()}`} className="space-y-10 scroll-mt-40">
+                    <div className="flex items-center space-x-8">
+                       <div className="w-16 h-16 bg-black text-yellow-400 flex items-center justify-center rounded-[1.5rem] font-black text-3xl italic shadow-2xl rotate-[-5deg]">{idx + 1}</div>
+                       <h3 className="text-4xl font-black text-black tracking-tight uppercase italic">{step.title}</h3>
                     </div>
-                    <p className="text-black text-lg leading-relaxed font-bold">
+                    <p className="text-black text-xl leading-relaxed font-bold border-l-4 border-slate-200 pl-10">
                       {step.content}
                     </p>
                     {step.media && step.media.length > 0 && (
-                      <div className="rounded-[3rem] overflow-hidden border-8 border-slate-50 shadow-xl bg-slate-100 group">
-                         <img src={step.media[0].url} className="w-full h-auto group-hover:scale-105 transition-transform duration-1000" />
+                      <div className="rounded-[4rem] overflow-hidden border-[10px] border-slate-50 shadow-2xl bg-slate-100 group">
+                         <img src={step.media[0].url} className="w-full h-auto group-hover:scale-110 transition-transform duration-[2000ms]" />
                       </div>
                     )}
                   </div>
@@ -259,81 +260,72 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onToggle
               </div>
             </section>
 
-            <section id="schematics" className="space-y-6 pt-12 border-t border-slate-100 scroll-mt-40 text-center py-20 bg-slate-50 rounded-[3rem] border border-slate-100 shadow-inner">
-                <Layers className="w-12 h-12 text-black mx-auto mb-4" />
-                <h2 className="text-xl font-black text-black uppercase tracking-widest">Wiring & Schematics</h2>
-                <p className="text-black text-sm max-w-sm mx-auto uppercase tracking-tighter font-black">Detailed circuit diagrams are being prepared for this mission module.</p>
-            </section>
-
-            <section id="code" className="space-y-8 pt-12 border-t border-slate-100 scroll-mt-40">
-               <h2 className="text-2xl font-black text-black uppercase tracking-tight">Code Logic</h2>
-               <div className="bg-slate-900 rounded-[3rem] p-16 space-y-8 text-center shadow-2xl">
-                 <div className="inline-flex p-5 bg-white/10 rounded-full mb-4">
-                    <Code className="w-10 h-10 text-yellow-400" />
+            {/* Rest of components darkened consistently */}
+            <section id="code" className="space-y-8 pt-16 border-t border-slate-100 scroll-mt-40">
+               <h2 className="text-3xl font-black text-black uppercase tracking-tight italic">Source Code Logic</h2>
+               <div className="bg-slate-900 rounded-[4rem] p-16 space-y-8 text-center shadow-3xl relative overflow-hidden">
+                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-yellow-400 to-pink-600" />
+                 <div className="inline-flex p-6 bg-white/10 rounded-full mb-4 shadow-xl">
+                    <Code className="w-12 h-12 text-yellow-400" />
                  </div>
-                 <div className="max-w-md mx-auto space-y-4">
-                   <h4 className="text-xl font-black text-white uppercase italic">Interactive Source Code</h4>
-                   <p className="text-white/60 text-sm leading-relaxed font-bold">
-                     This project utilizes Microsoft MakeCode for block-based and JavaScript logic. Click below to view the actual code in the official editor.
+                 <div className="max-w-md mx-auto space-y-6">
+                   <h4 className="text-2xl font-black text-white uppercase italic">Interactive MakeCode Module</h4>
+                   <p className="text-white/70 text-base leading-relaxed font-bold italic">
+                     Access the real-time block logic and Javascript backend for this mission.
                    </p>
                  </div>
-                 {project.makecodeUrl ? (
-                   <div className="pt-6">
+                 {project.makecodeUrl && (
+                   <div className="pt-8">
                       <a 
                         href={project.makecodeUrl} 
                         target="_blank" 
                         rel="noreferrer"
-                        className="inline-flex items-center justify-center bg-yellow-400 text-black px-12 py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all shadow-xl hover:bg-white active:scale-95 group"
+                        className="inline-flex items-center justify-center bg-yellow-400 text-black px-16 py-6 rounded-3xl font-black text-sm uppercase tracking-[0.2em] transition-all shadow-2xl hover:bg-white hover:scale-105 active:scale-95 group"
                       >
-                        <ExternalLink className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" /> 
-                        Launch MakeCode Editor
+                        <ExternalLink className="w-6 h-6 mr-4 group-hover:rotate-12 transition-transform" /> 
+                        Launch Mission Control
                       </a>
-                      <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] mt-8 truncate">
-                        {project.makecodeUrl}
+                      <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mt-10 truncate max-w-sm mx-auto">
+                        URL: {project.makecodeUrl}
                       </p>
-                   </div>
-                 ) : (
-                   <div className="bg-black/40 p-10 rounded-2xl border border-white/5">
-                      <Terminal className="w-8 h-8 text-white/10 mx-auto mb-4" />
-                      <p className="text-white/20 text-[10px] font-black uppercase tracking-widest">No MakeCode link provided for this specific mission.</p>
                    </div>
                  )}
                </div>
             </section>
 
-            <section id="comments" className="space-y-10 pt-12 border-t border-slate-100 scroll-mt-40 pb-40">
-               <h2 className="text-2xl font-black text-black uppercase tracking-tight">Discussion ({comments.length})</h2>
-               <form onSubmit={handleAddComment} className="bg-slate-50 p-8 rounded-[2rem] border-2 border-slate-100 shadow-inner">
+            <section id="comments" className="space-y-12 pt-16 border-t border-slate-100 scroll-mt-40 pb-48">
+               <h2 className="text-3xl font-black text-black uppercase tracking-tight italic">Communications Room ({comments.length})</h2>
+               <form onSubmit={handleAddComment} className="bg-slate-50 p-10 rounded-[3rem] border-4 border-slate-100 shadow-inner">
                   <textarea 
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
-                    placeholder="Ask a question or share your build notes..."
-                    className="w-full bg-transparent border-none outline-none text-black placeholder:text-slate-400 min-h-[100px] resize-none text-lg font-bold"
+                    placeholder="Ask a question or share your build log..."
+                    className="w-full bg-transparent border-none outline-none text-black placeholder:text-slate-400 min-h-[120px] resize-none text-xl font-black italic"
                   />
-                  <div className="flex justify-end mt-4">
-                    <button className="bg-black text-white px-10 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-yellow-400 hover:text-black transition-all shadow-lg">Transmit Signal</button>
+                  <div className="flex justify-end mt-6">
+                    <button className="bg-black text-white px-12 py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-yellow-400 hover:text-black transition-all shadow-2xl active:scale-95">Transmit Message</button>
                   </div>
                </form>
-               <div className="space-y-12 mt-12">
+               <div className="space-y-16 mt-16">
                   {comments.map(c => (
-                    <div key={c.id} className="flex space-x-6 group">
-                       <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center font-black text-white border border-slate-200 overflow-hidden shadow-sm group-hover:rotate-3 transition-transform p-1">
+                    <div key={c.id} className="flex space-x-8 group">
+                       <div className="w-16 h-16 rounded-[1.5rem] bg-slate-100 flex items-center justify-center font-black text-white border-2 border-slate-200 overflow-hidden shadow-sm group-hover:rotate-6 transition-transform p-1.5">
                           <img 
                             src={`https://api.dicebear.com/7.x/bottts/svg?seed=${c.author}&backgroundColor=${AVATAR_BG}`} 
                             alt="avatar" 
                             className="w-full h-full object-cover"
                           />
                        </div>
-                       <div className="flex-grow space-y-3">
+                       <div className="flex-grow space-y-4">
                           <div className="flex items-center justify-between">
-                             <span className="font-black text-black text-base uppercase tracking-tight">{c.author}</span>
+                             <span className="font-black text-black text-lg uppercase tracking-tight italic">{c.author}</span>
                              <span className="text-[10px] text-slate-500 font-black uppercase tracking-widest">{c.timestamp}</span>
                           </div>
-                          <p className="text-black text-lg leading-relaxed font-bold italic opacity-90">"{c.text}"</p>
-                          <div className="flex items-center space-x-4">
-                            <button onClick={() => handleLikeComment(c.id)} className="flex items-center space-x-2 text-[10px] font-black uppercase text-slate-500 hover:text-pink-600 transition-colors">
-                               <ThumbsUp className={`w-3.5 h-3.5 ${likedComments.has(c.id) ? 'fill-pink-600 text-pink-600' : ''}`} />
-                               <span>{c.likes}</span>
+                          <p className="text-black text-xl leading-relaxed font-bold italic opacity-95">"{c.text}"</p>
+                          <div className="flex items-center space-x-6 pt-2">
+                            <button onClick={() => handleLikeComment(c.id)} className="flex items-center space-x-2 text-[11px] font-black uppercase text-slate-600 hover:text-pink-600 transition-colors">
+                               <ThumbsUp className={`w-4 h-4 ${likedComments.has(c.id) ? 'fill-pink-600 text-pink-600' : 'text-slate-400'}`} />
+                               <span>{c.likes} Appreciation</span>
                             </button>
                           </div>
                        </div>
@@ -343,26 +335,26 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack, onToggle
             </section>
           </main>
 
-          <aside className="col-span-12 lg:col-span-3 space-y-10">
-            <div className="space-y-6 bg-slate-50 p-10 rounded-[2rem] border border-slate-100 shadow-sm">
-              <h3 className="text-[11px] font-black text-slate-900 uppercase tracking-widest border-b border-slate-200 pb-4">Mission Classification</h3>
-              <div className="flex flex-wrap gap-2">
+          <aside className="col-span-12 lg:col-span-3 space-y-12">
+            <div className="space-y-8 bg-slate-50 p-12 rounded-[3rem] border-2 border-slate-100 shadow-sm">
+              <h3 className="text-[12px] font-black text-black uppercase tracking-[0.3em] border-b-2 border-slate-200 pb-6">Classification</h3>
+              <div className="flex flex-wrap gap-3">
                 {['robotics', 'iot', 'automation', 'esp32', 'coding', 'smart home'].map(tag => (
-                  <span key={tag} className="px-4 py-2 bg-white text-black text-[10px] font-black rounded-xl uppercase tracking-wider border border-slate-200 shadow-sm">
+                  <span key={tag} className="px-5 py-2.5 bg-white text-black text-[11px] font-black rounded-xl uppercase tracking-widest border-2 border-slate-100 shadow-sm hover:border-black transition-all cursor-default">
                     #{tag}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="bg-black p-10 rounded-[3rem] shadow-2xl space-y-4 relative overflow-hidden group">
-               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-150 transition-transform duration-1000">
-                  <Trophy size={150} className="text-white" />
+            <div className="bg-black p-12 rounded-[4rem] shadow-3xl space-y-8 relative overflow-hidden group">
+               <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-150 group-hover:rotate-12 transition-transform duration-1000">
+                  <Trophy size={180} className="text-white" />
                </div>
                <div className="relative z-10">
-                  <h4 className="text-2xl font-black uppercase italic leading-none text-yellow-400">Mission Reward</h4>
-                  <p className="text-[12px] font-black text-white/60 leading-relaxed mt-6">Complete this mission to unlock your hardware certification on your profile.</p>
-                  <button className="w-full mt-10 bg-white text-black py-4 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all hover:bg-yellow-400 shadow-xl active:scale-95">Claim Reward</button>
+                  <h4 className="text-3xl font-black uppercase italic leading-none text-yellow-400">Mission Reward</h4>
+                  <p className="text-[13px] font-black text-white/50 leading-relaxed mt-8 uppercase tracking-widest">Seal this mission log to verify your hardware certification profile.</p>
+                  <button className="w-full mt-12 bg-white text-black py-5 rounded-3xl font-black text-xs uppercase tracking-[0.3em] transition-all hover:bg-yellow-400 shadow-[0_15px_40px_rgba(255,255,255,0.1)] active:scale-95">Secure Credentials</button>
                </div>
             </div>
           </aside>

@@ -1,6 +1,5 @@
 
 import React from 'react';
-// Changed to import InteractiveProject from central types file
 import { Project, InteractiveProject } from '../types';
 import { Eye, Heart, Clock, MessageSquare } from 'lucide-react';
 import { AVATAR_BG } from '../constants';
@@ -55,11 +54,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, onToggleLik
         <h3 className="font-black text-[#0f172a] text-2xl mb-4 leading-none group-hover:text-[#6b1e8e] transition-colors uppercase tracking-tighter line-clamp-2">
           {project.title}
         </h3>
-        <p className="text-black text-sm mb-8 line-clamp-2 leading-relaxed font-semibold italic opacity-95">
+        <p className="text-slate-900 text-sm mb-8 line-clamp-2 leading-relaxed font-bold italic opacity-100">
           "{project.description}"
         </p>
         
-        {/* Author and Stats Section - Matching Screenshot EXACTLY */}
+        {/* Author and Stats Section */}
         <div className="flex items-center justify-between pt-6 border-t border-slate-100 mt-auto">
           <div className="flex items-center space-x-3 overflow-hidden">
             <div className="w-12 h-12 rounded-2xl bg-[#6b1e8e] flex-shrink-0 flex items-center justify-center text-white shadow-lg border-2 border-white overflow-hidden">
@@ -70,28 +69,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, onToggleLik
               />
             </div>
             <div className="flex flex-col min-w-0">
-               <p className="text-[9px] font-black text-slate-900 uppercase tracking-widest leading-none mb-1">Created By</p>
+               <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest leading-none mb-1">Created By</p>
                <p className="text-[13px] font-black text-black uppercase tracking-tight truncate">
                  {project.author}
                </p>
             </div>
           </div>
           
-          <div className="flex items-center space-x-4 text-slate-500 flex-shrink-0">
+          <div className="flex items-center space-x-4 text-slate-700 flex-shrink-0">
             <div className="flex items-center space-x-1">
-               <Eye className="w-4 h-4 text-black" /> 
-               <span className="text-[11px] font-black text-black">{project.views}</span>
+               <Eye className="w-4 h-4 text-slate-400" /> 
+               <span className="text-[11px] font-black">{project.views}</span>
             </div>
             <div className="flex items-center space-x-1">
-               <MessageSquare className="w-4 h-4 text-black" /> 
-               <span className="text-[11px] font-black text-black">{project.comments.length}</span>
+               <MessageSquare className="w-4 h-4 text-slate-400" /> 
+               <span className="text-[11px] font-black">{project.comments.length}</span>
             </div>
             <button 
               onClick={handleLikeClick}
               className={`flex items-center space-x-1 transition-all hover:scale-110 active:scale-90 ${project.isLikedByUser ? 'text-pink-600' : 'hover:text-pink-500'}`}
             >
-              <Heart className={`w-4 h-4 ${project.isLikedByUser ? 'fill-pink-600' : 'text-black'}`} /> 
-              <span className="text-[11px] font-black text-black">{project.likes}</span>
+              <Heart className={`w-4 h-4 ${project.isLikedByUser ? 'fill-pink-600' : 'text-slate-400'}`} /> 
+              <span className="text-[11px] font-black">{project.likes}</span>
             </button>
           </div>
         </div>
@@ -99,10 +98,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, onToggleLik
 
       {/* Footer Meta Section */}
       <div className="bg-slate-50/80 px-8 py-5 flex justify-between items-center text-[10px] uppercase tracking-[0.2em] font-black text-black border-t border-slate-200">
-        <span className="flex items-center text-black font-black">
-           <Clock className="w-3.5 h-3.5 mr-2 text-black" /> {project.duration}
+        <span className="flex items-center font-black">
+           <Clock className="w-4 h-4 mr-2 text-slate-500" /> {project.duration}
         </span>
-        <div className="bg-white px-4 py-2 rounded-xl border border-slate-300 shadow-sm text-[9px] font-black text-black uppercase tracking-widest">
+        <div className="bg-white px-5 py-2 rounded-xl border border-slate-200 shadow-sm text-[9px] font-black text-black uppercase tracking-widest">
            {project.hardware.length} Hardware
         </div>
       </div>
